@@ -78,17 +78,21 @@ const Mode = { // tslint:disable-line:variable-name
 
   rtfScan(items) {
     const reference = items.map(item => {
-      const ref = []
+      const out = []
+
+      out.push('= Source Nodes =\n')
 
       // author
       const creators = item.creators || []
       const creator = creators[0] || {}
       let name = creator.name || creator.lastName || 'no author'
       if (creators.length > 1) name += ' et al.'
-      ref.push(name)
+      out.push('Author:     ' + name)
 
       // title
-      if (item.title) ref.push(JSON.stringify(item.title))
+      if (item.title) {
+        out.push('Title:      ' + item.title)
+      }
 
       // year
       if (item.date) {
@@ -96,17 +100,30 @@ const Mode = { // tslint:disable-line:variable-name
         if (date.type === 'interval') date = date.from
 
         if (date.type === 'verbatim' || !date.year) {
-          ref.push(item.date)
+          out.push('Date:\t\t' + item.date)
         } else {
-          ref.push(date.year)
+          out.push('Date:\t\t' + date.year)
         }
       } else {
-        ref.push('no date')
+        out.push('Date:       no date')
       }
 
-      return ref.join(', ')
+      if(item.dateAdded){
+         const tzone = Intl.DateTimeFormat().resolvedOptions().timeZone
+         const t = new Date(item.dateAdded)
+         const dateAddedTimeZoned = t.toLocaleString('de-DE', {timeZone: tzone })
+         out.push('DateAdded:  ' + dateAddedTimeZoned)
+      }
+      const ckey = item.citationKey  // citation
+      const zUrl = select_by_key(item) // select url
+      out.push(`Zt-Cite:    [[${zUrl} | :zt-${ckey}: ]]`)
+
+
+      out.push('Tags:       ' + JSON.stringify(item.getTags()))
+
+      return out.join('\n')
     })
-    Zotero.write(`{${reference.join('; ')}}`)
+    Zotero.write(`${reference.join('; ')}`)
   },
 
   'string-template'(items) {
