@@ -1,3 +1,9 @@
+.directory
+tags
+venv/
+fields.gml
+mapping.gml
+schema.json
 Exported Items.*
 My Library.*
 .github/issues.json

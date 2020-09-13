@@ -1,6 +1,6 @@
 {
   "translatorID": "8c06ba7d-dfae-4a64-9d41-0ed4ca94ee58",
-  "label": "BTT-vimwiki",
+  "label": "BTT-vimwiki-link",
   "description": "exports citations to be copy-pasted into vimwiki",
   "creator": "stsc",
   "target": "txt",
@@ -9,7 +9,11 @@
   "browserSupport": "gcsv",
   "priority": 100,
   "displayOptions": {
-    "quickCopyMode": ""
+    "quickCopyMode": "",
+    "exportNotes": true,
+    "exportFileData": false,
+    "keepUpdated": false,
+    "Normalize": false
   },
   "inRepository": false
 }

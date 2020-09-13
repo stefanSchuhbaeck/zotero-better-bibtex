@@ -1,0 +1,12 @@
+{
+  "browserSupport": "gcsv",
+  "creator": "stsc",
+  "description": "exports meta block for vimwiki/zettelkasten",
+  "inRepository": false,
+  "label": "BTT-vimwiki-meta",
+  "minVersion": "4.0.27",
+  "priority": 100,
+  "target": "txt",
+  "translatorID": "02c80513-d14b-4d89-99ef-3736cdd88792",
+  "translatorType": 2
+}
